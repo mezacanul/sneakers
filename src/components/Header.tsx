@@ -47,7 +47,7 @@ function NavbarItem({ title }: { title: string }) {
 function CartAndProfile() {
     return (
         <div className="flex items-center gap-[2.5rem] -mt-[2rem]">
-            <span className="text-2xl">
+            <span className="text-2xl text-dark-grayish-blue hover:text-very-dark-blue cursor-pointer transition-all duration-300">
                 <BsCart3 />
             </span>
             <img
