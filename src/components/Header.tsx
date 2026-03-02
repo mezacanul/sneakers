@@ -1,6 +1,8 @@
 import { BsCart3 } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import type { RootState } from "../store";
+import { useState } from "react";
+import CartContent from "./CartContent";
 
 export default function Header() {
     return (
@@ -62,19 +64,30 @@ function CartAndProfile() {
 }
 
 function Cart() {
+    const [showCart, setShowCart] = useState(false);
+    const handleShowCart = () => {
+        setShowCart(!showCart);
+    };
     const quantity = useSelector(
         (state: RootState) => state.cart.quantity
     );
     return (
         <div className="relative">
-            <span className="text-2xl text-dark-grayish-blue hover:text-very-dark-blue cursor-pointer transition-all duration-300">
+            <span
+                className="text-2xl text-dark-grayish-blue hover:text-very-dark-blue transition-all duration-300 cursor-pointer"
+                onClick={handleShowCart}
+            >
                 <BsCart3 />
             </span>
             {quantity > 0 && (
-                <div className="absolute -top-2 -right-3 bg-orange rounded-full w-5 h-5 flex items-center justify-center text-white text-xs">
+                <div
+                    className="absolute -top-2 -right-3 bg-orange rounded-full w-5 h-5 flex items-center justify-center text-white text-xs cursor-pointer"
+                    onClick={handleShowCart}
+                >
                     {quantity}
                 </div>
             )}
+            {showCart && <CartContent />}
         </div>
     );
 }
