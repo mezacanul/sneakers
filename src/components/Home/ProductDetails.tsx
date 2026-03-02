@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { BsCart3 } from "react-icons/bs";
 import { cn } from "../../utils/cn";
+import { useDispatch } from "react-redux";
+import { setCart } from "../../store/features/cartSlice";
 
 export default function ProductDetails() {
     return (
@@ -50,10 +52,28 @@ function ProductDescriptionAndPrice() {
 }
 
 function Actions() {
+    const dispatch = useDispatch();
+    const [quantity, setQuantity] = useState(1);
+
+    const handleAddToCart = () => {
+        dispatch(setCart(quantity));
+    };
+
+    const btnClasses = cn(
+        "bg-orange shadow-md cursor-pointer h-full w-100 flex items-center justify-center text-base font-bold px-6 py-4 rounded-lg hover:bg-orange/80 transition-all duration-300 gap-2",
+        quantity === 0 && "opacity-50 cursor-not-allowed"
+    );
     return (
         <div className="flex items-center gap-4 h-[3.5rem]">
-            <QuantityPicker />
-            <button className="bg-orange shadow-md cursor-pointer h-full w-100 flex items-center justify-center text-base font-bold px-6 py-4 rounded-lg hover:bg-orange/80 transition-all duration-300 gap-2">
+            <QuantityPicker
+                quantity={quantity}
+                setQuantity={setQuantity}
+            />
+            <button
+                className={btnClasses}
+                onClick={handleAddToCart}
+                disabled={quantity === 0}
+            >
                 <span>
                     <BsCart3 />
                 </span>
@@ -63,12 +83,16 @@ function Actions() {
     );
 }
 
-function QuantityPicker() {
-    const [quantity, setQuantity] = useState(0);
-
+function QuantityPicker({
+    quantity,
+    setQuantity,
+}: {
+    quantity: number;
+    setQuantity: (quantity: number) => void;
+}) {
     function handleChange(type: "-" | "+") {
         if (type === "-") {
-            if (quantity === 0) return;
+            if (quantity === 1) return;
             setQuantity(quantity - 1);
         } else {
             setQuantity(quantity + 1);
@@ -82,10 +106,10 @@ function QuantityPicker() {
                 className={cn(
                     "cursor-pointer",
                     btnClasses,
-                    quantity === 0 &&
+                    quantity === 1 &&
                         "opacity-50 cursor-not-allowed"
                 )}
-                disabled={quantity === 0}
+                disabled={quantity === 1}
                 onClick={() => handleChange("-")}
             >
                 {"-"}

@@ -1,4 +1,6 @@
 import { BsCart3 } from "react-icons/bs";
+import { useSelector } from "react-redux";
+import type { RootState } from "../store";
 
 export default function Header() {
     return (
@@ -47,9 +49,7 @@ function NavbarItem({ title }: { title: string }) {
 function CartAndProfile() {
     return (
         <div className="flex items-center gap-[2.5rem] -mt-[2rem]">
-            <span className="text-2xl text-dark-grayish-blue hover:text-very-dark-blue cursor-pointer transition-all duration-300">
-                <BsCart3 />
-            </span>
+            <Cart />
             <img
                 src="/images/image-avatar.png"
                 alt="profile"
@@ -57,6 +57,24 @@ function CartAndProfile() {
                 height={50}
                 className="hover:border-3 hover:border-orange rounded-full transition-all duration-100 cursor-pointer"
             />
+        </div>
+    );
+}
+
+function Cart() {
+    const quantity = useSelector(
+        (state: RootState) => state.cart.quantity
+    );
+    return (
+        <div className="relative">
+            <span className="text-2xl text-dark-grayish-blue hover:text-very-dark-blue cursor-pointer transition-all duration-300">
+                <BsCart3 />
+            </span>
+            {quantity > 0 && (
+                <div className="absolute -top-2 -right-3 bg-orange rounded-full w-5 h-5 flex items-center justify-center text-white text-xs">
+                    {quantity}
+                </div>
+            )}
         </div>
     );
 }
