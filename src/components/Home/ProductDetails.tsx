@@ -75,11 +75,12 @@ function QuantityPicker() {
         }
     }
     const btnClasses =
-        "h-full px-4 bg-light-grayish-blue text-orange cursor-pointer text-2xl/[1] font-bold tracking-wider";
+        "h-full px-4 bg-light-grayish-blue text-orange text-2xl/[1] font-bold tracking-wider";
     return (
         <div className="flex items-center h-full shadow-md">
             <button
                 className={cn(
+                    "cursor-pointer",
                     btnClasses,
                     quantity === 0 &&
                         "opacity-50 cursor-not-allowed"
@@ -99,6 +100,7 @@ function QuantityPicker() {
             </span>
             <button
                 className={cn(
+                    "cursor-pointer",
                     btnClasses,
                     quantity === 10 &&
                         "opacity-50 cursor-not-allowed"

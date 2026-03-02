@@ -5,19 +5,27 @@ export default function Preview() {
     const [activeIndex, setActiveIndex] = useState(0);
     const thumbnails = [
         {
-            src: "/images/image-product-1-thumbnail.jpg",
+            main: "/images/image-product-1.jpg",
+            thumbnail:
+                "/images/image-product-1-thumbnail.jpg",
             alt: "preview",
         },
         {
-            src: "/images/image-product-2-thumbnail.jpg",
+            main: "/images/image-product-2.jpg",
+            thumbnail:
+                "/images/image-product-2-thumbnail.jpg",
             alt: "preview",
         },
         {
-            src: "/images/image-product-3-thumbnail.jpg",
+            main: "/images/image-product-3.jpg",
+            thumbnail:
+                "/images/image-product-3-thumbnail.jpg",
             alt: "preview",
         },
         {
-            src: "/images/image-product-4-thumbnail.jpg",
+            main: "/images/image-product-4.jpg",
+            thumbnail:
+                "/images/image-product-4-thumbnail.jpg",
             alt: "preview",
         },
     ];
@@ -25,15 +33,15 @@ export default function Preview() {
         <div className="flex flex-col">
             <img
                 className="w-full object-cover rounded-2xl mx-auto"
-                src="/images/image-product-1.jpg"
+                src={thumbnails[activeIndex].main}
                 alt="preview"
             />
 
             <div className="flex justify-between w-full mx-auto py-[2rem]">
                 {thumbnails.map((thumbnail, index) => (
                     <Thumbnail
-                        key={thumbnail.src}
-                        src={thumbnail.src}
+                        key={thumbnail.thumbnail}
+                        thumbnail={thumbnail.thumbnail}
                         alt={thumbnail.alt}
                         index={index}
                         activeIndex={activeIndex}
@@ -46,7 +54,7 @@ export default function Preview() {
 }
 
 interface ThumbnailProps {
-    src: string;
+    thumbnail: string;
     alt: string;
     index: number;
     activeIndex: number;
@@ -54,7 +62,7 @@ interface ThumbnailProps {
 }
 
 function Thumbnail({
-    src,
+    thumbnail,
     alt,
     index,
     activeIndex,
@@ -68,7 +76,8 @@ function Thumbnail({
         ),
         img: cn(
             "w-[5rem] h-[5rem] object-cover rounded",
-            index === activeIndex && "opacity-50"
+            index === activeIndex && "opacity-50",
+            "hover:opacity-50 transition-all duration-300"
         ),
     };
     return (
@@ -78,7 +87,7 @@ function Thumbnail({
         >
             <img
                 className={classNames.img}
-                src={src}
+                src={thumbnail}
                 alt={alt}
             />
         </div>

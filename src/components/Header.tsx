@@ -55,6 +55,7 @@ function CartAndProfile() {
                 alt="profile"
                 width={50}
                 height={50}
+                className="hover:border-3 hover:border-orange rounded-full transition-all duration-100 cursor-pointer"
             />
         </div>
     );
