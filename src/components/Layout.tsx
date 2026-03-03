@@ -3,9 +3,9 @@ import Header from "./Header";
 
 export default function Layout() {
     return (
-        <div className="mx-[8rem] h-screen">
+        <div className="lg:mx-[8rem] h-screen">
             <Header />
-            <div className="mx-[3rem] 2xl:mx-[8rem] my-[4rem] h-[75vh]">
+            <div className="lg:mx-[0rem] xl:mx-[4rem] 2xl:mx-[8rem] my-[0rem] sm:my-[4rem] h-[auto] sm:h-[75vh]">
                 <Outlet />
             </div>
         </div>

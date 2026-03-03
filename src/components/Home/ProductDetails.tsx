@@ -6,7 +6,7 @@ import { setCart } from "../../store/features/cartSlice";
 
 export default function ProductDetails() {
     return (
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-5 sm:gap-8 px-[2rem] sm:px-[0rem]">
             <ProductTitle />
             <ProductDescriptionAndPrice />
             <Actions />
@@ -21,7 +21,7 @@ function ProductTitle() {
             <b className="text-dark-grayish-blue text-sm uppercase tracking-widest">
                 {company}
             </b>
-            <h1 className="text-very-dark-blue text-[3rem]/[1] font-bold">
+            <h1 className="text-very-dark-blue text-[2.2rem]/[1.2] sm:text-[3rem]/[1] font-bold">
                 {title}
             </h1>
         </div>
@@ -36,7 +36,7 @@ function ProductDescriptionAndPrice() {
             <p className="text-dark-grayish-blue text-base leading-relaxed mb-5">
                 {description}
             </p>
-            <div className="flex flex-col gap-4">
+            <div className="flex sm:flex-col items-center sm:items-start justify-between sm:justify-start gap-4">
                 <div className="flex items-center gap-3">
                     <h1 className="text-very-dark-blue text-2xl/[1] font-bold tracking-wider">
                         {`$${price.toFixed(2)}`}
@@ -60,11 +60,11 @@ function Actions() {
     };
 
     const btnClasses = cn(
-        "bg-orange shadow-md cursor-pointer h-full w-100 flex items-center justify-center text-base font-bold px-6 py-4 rounded-lg hover:bg-orange/80 transition-all duration-300 gap-2",
+        "bg-orange shadow-lg sm:shadow-md cursor-pointer h-full w-full sm:w-100 flex items-center justify-center text-lg sm:text-base font-bold px-6 py-4 rounded-lg hover:bg-orange/80 transition-all duration-300 gap-2",
         quantity === 0 && "opacity-50 cursor-not-allowed"
     );
     return (
-        <div className="flex items-center gap-4 h-[3.5rem]">
+        <div className="flex flex-col sm:flex-row items-center gap-4 h-[3.5rem]">
             <QuantityPicker
                 quantity={quantity}
                 setQuantity={setQuantity}
@@ -99,9 +99,9 @@ function QuantityPicker({
         }
     }
     const btnClasses =
-        "h-full px-4 bg-light-grayish-blue text-orange text-2xl/[1] font-bold tracking-wider";
+        "h-full px-4 py-4 sm:py-0 bg-light-grayish-blue text-orange text-[2rem]/[0] sm:text-2xl/[1] font-bold tracking-wider";
     return (
-        <div className="flex items-center h-full shadow-md">
+        <div className="flex items-center h-full w-full sm:w-auto shadow-md rounded-lg">
             <button
                 className={cn(
                     "cursor-pointer",
@@ -117,7 +117,8 @@ function QuantityPicker({
             <span
                 className={cn(
                     btnClasses,
-                    "flex items-center justify-center text-lg text-black"
+                    "flex items-center justify-center text-lg text-black",
+                    "w-full sm:w-auto"
                 )}
             >
                 {quantity}

@@ -3,10 +3,12 @@ import { useSelector } from "react-redux";
 import type { RootState } from "../store";
 import { useState } from "react";
 import CartContent from "./CartContent";
+import { useResponsive } from "../hooks/useResponsive";
+import MobileNav from "./MobileNav";
 
 export default function Header() {
     return (
-        <div className="flex justify-between items-center pt-[2.5rem] border-b border-grayish-blue">
+        <div className="flex justify-between items-center px-[1rem] sm:px-[0rem] py-[1rem] sm:pt-[2.5rem] border-b border-grayish-blue">
             <Navbar />
             <CartAndProfile />
         </div>
@@ -22,20 +24,26 @@ function Navbar() {
         { title: "Contact" },
     ];
     return (
-        <div className="flex items-center gap-[2rem]">
+        <div className="flex items-center gap-[1rem] sm:gap-[2rem]">
+            {useResponsive([<MobileNav />, null])}
             <img
-                className="-mt-1 me-5 pb-[2rem]"
+                className="-mt-1 me-5 pb-0 sm:pb-[2rem]"
                 src="/images/logo.svg"
                 alt="logo"
                 width={150}
                 height={25}
             />
-            {navbarItems.map((item) => (
-                <NavbarItem
-                    key={item.title}
-                    title={item.title}
-                />
-            ))}
+            {useResponsive([
+                null,
+                <>
+                    {navbarItems.map((item) => (
+                        <NavbarItem
+                            key={item.title}
+                            title={item.title}
+                        />
+                    ))}
+                </>,
+            ])}
         </div>
     );
 }
@@ -50,7 +58,7 @@ function NavbarItem({ title }: { title: string }) {
 
 function CartAndProfile() {
     return (
-        <div className="flex items-center gap-[2.5rem] -mt-[2rem]">
+        <div className="flex items-center gap-[1.2rem] lg:gap-[2.5rem] -mt-0 sm:-mt-[2rem]">
             <Cart />
             <img
                 src="/images/image-avatar.png"
