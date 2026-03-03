@@ -30,17 +30,22 @@ export default function Carousel() {
         <div className="relative w-full h-90 overflow-hidden">
             <div
                 className="flex transition-transform duration-500 ease-in-out h-full"
-                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+                style={{ 
+                    transform: `translateX(-${(currentIndex * 100) / images.length}%)`,
+                    width: `${images.length * 100}%`
+                }}
             >
                 {images.map((image, index) => (
                     <div
                         key={index}
-                        className="min-w-full h-full flex-shrink-0"
+                        className="h-full flex-shrink-0 relative"
+                        style={{ width: `${100 / images.length}%` }}
                     >
                         <img
                             src={image}
                             alt={`carousel ${index + 1}`}
                             className="w-full h-full object-cover"
+                            style={{ display: 'block' }}
                         />
                     </div>
                 ))}

@@ -6,7 +6,7 @@ import { setCart } from "../../store/features/cartSlice";
 
 export default function ProductDetails() {
     return (
-        <div className="flex flex-col gap-5 sm:gap-8 px-[2rem] sm:px-[0rem]">
+        <div className="flex flex-col gap-5 sm:gap-8 px-[2rem] sm:px-[0rem] pb-5 sm:pb-0">
             <ProductTitle />
             <ProductDescriptionAndPrice />
             <Actions />
