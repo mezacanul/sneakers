@@ -19,7 +19,7 @@ export default function CartContent() {
     }
     const classes = {
         container:
-            "absolute top-17 -right-17 sm:top-10 sm:-right-2 bg-white rounded-md border border-grayish-blue w-100 sm:w-95 shadow-sm z-50",
+            "absolute left-1/2 top-20 transform -translate-x-1/2 sm:top-10 sm:-right-2 sm:left-auto sm:translate-x-0 bg-white rounded-md border border-grayish-blue w-100 sm:w-95 shadow-sm z-50",
         title: "py-3 px-4 font-bold border-b border-grayish-blue",
         content: "py-4 px-4 flex flex-col gap-4",
         product: "flex items-start justify-between gap-4",
